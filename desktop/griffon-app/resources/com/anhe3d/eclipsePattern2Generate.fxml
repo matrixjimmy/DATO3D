@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.layout.*?>
+<ScrollPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.anhe3d.EclipsePattern2GenerateView">
+    <GridPane prefHeight="498.0" prefWidth="498.0">
+        <columnConstraints>
+            <ColumnConstraints/>
+            <ColumnConstraints minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints minWidth="10.0" prefWidth="100.0"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints/>
+            <RowConstraints/>
+            <RowConstraints/>
+        </rowConstraints>
+        <padding>
+            <Insets bottom="10" left="10" right="10" top="10"/>
+        </padding>
+        <ColorPicker fx:id="colorPicker" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <Group fx:id="canvasGroup" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1"/>
+        <Button fx:id="refreshActionTarget" mnemonicParsing="false" text="Refresh" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <Button fx:id="printActionTarget" mnemonicParsing="false" text="Print" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        <VBox prefWidth="100.0" spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label fx:id="labelX" text="X"/>
+            <TextField fx:id="inputXActionTarget"/>
+            <Label fx:id="labelY" text="Y"/>
+            <TextField fx:id="inputYActionTarget"/>
+            <Label fx:id="labelR" text="r"/>
+            <TextField fx:id="inputRActionTarget"/>
+            <Label fx:id="labelH" text="h"/>
+            <TextField fx:id="inputHActionTarget"/>
+            <Label fx:id="labelInitialE" text="InitialE"/>
+            <TextField fx:id="inputInitialEActionTarget"/>
+            <Label fx:id="labelD1" text="d1"/>
+            <TextField fx:id="inputD1ActionTarget"/>
+            <Label fx:id="labelD2" text="d2"/>
+            <TextField fx:id="inputD2ActionTarget"/>
+        </VBox>
+    </GridPane>
+</ScrollPane>

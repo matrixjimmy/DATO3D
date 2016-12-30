@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<ScrollPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.anhe3d.TubePatternGenerateView">
+    <content>
+        <GridPane prefHeight="498.0" prefWidth="498.0">
+            <columnConstraints>
+                <ColumnConstraints/>
+                <ColumnConstraints/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+            </rowConstraints>
+            <ColorPicker fx:id="colorPicker" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <ImageView fx:id="imageView" fitHeight="400.0" fitWidth="400.0" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                       GridPane.columnSpan="3"/>
+            <Button fx:id="saveFolderActionTarget" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <Button fx:id="loadActionTarget" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <Button fx:id="printActionTarget" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+        </GridPane>
+    </content>
+</ScrollPane>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jxb:bindings version="1.0" xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+              xmlns:xjc= "http://java.sun.com/xml/ns/jaxb/xjc"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <jxb:bindings schemaLocation="3mf-schema-core-2015-02.xsd" node="/xs:schema">
+        <jxb:globalBindings>
+            <xjc:simple/>
+        </jxb:globalBindings>
+        <jxb:schemaBindings>
+            <jxb:package name="com.anhe3d.domain.threemf.v2015.core"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="3mf-schema-material-2015-02.xsd" node="/xs:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="com.anhe3d.domain.threemf.v2015.material"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+</jxb:bindings>

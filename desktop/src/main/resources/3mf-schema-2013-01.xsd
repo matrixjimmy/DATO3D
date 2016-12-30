@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://schemas.microsoft.com/3dmanufacturing/2013/01" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:xml="http://www.w3.org/XML/1998/namespace"
+           targetNamespace="http://schemas.microsoft.com/3dmanufacturing/2013/01" elementFormDefault="unqualified"
+           attributeFormDefault="unqualified" blockDefault="#all">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+    <xs:annotation>
+        <xs:documentation><![CDATA[
+            Schema notes:
+            Items within this schema follow a simple naming convention of appending a prefix indicating the type of element for references:
+            Unprefixed: Element names
+            : Complex types
+            : Simple types
+        ]]></xs:documentation>
+    </xs:annotation>
+    <!-- Complex Types -->
+    <xs:complexType name="Model">
+        <xs:sequence>
+            <xs:element ref="metadata" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="resources"/>
+            <xs:element ref="build"/>
+            <!--<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>-->
+        </xs:sequence>
+        <xs:attribute name="unit" type="Unit" default="millimeter"/>
+        <xs:attribute ref="xml:lang"/>
+        <xs:attribute name="requiredextensions" type="xs:string"/>
+        <!--<xs:anyAttribute namespace="##other" processContents="lax"/>-->
+    </xs:complexType>
+    <xs:complexType name="Resources">
+        <xs:sequence>
+            <xs:element ref="material" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="color" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="basematerials" minOccurs="0" maxOccurs="unbounded"/>
+            <!--<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>-->
+            <xs:element ref="object" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <!--<xs:anyAttribute namespace="##other" processContents="lax"/>-->
+    </xs:complexType>
+    <xs:complexType name="Build">
+        <xs:sequence>
+            <xs:element ref="item" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <!--<xs:anyAttribute namespace="##other" processContents="lax"/>-->
+    </xs:complexType>
+    <xs:complexType name="BaseMaterials">
+        <xs:sequence>
+            <xs:element ref="base" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="ResourceID" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="Base">
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="displaycolor" type="ColorValue" use="required"/>
+        <!--<xs:anyAttribute namespace="##other" processContents="lax"/>-->
+    </xs:complexType>
+    <xs:complexType name="Object">
+        <xs:choice>
+            <xs:element ref="mesh"/>
+            <xs:element ref="components"/>
+        </xs:choice>
+        <xs:attribute name="id" type="ResourceID" use="required"/>
+        <xs:attribute name="type" type="ObjectType" default="model"/>
+        <xs:attribute name="matid" type="ResourceID"/>
+        <xs:attribute name="materialid" type="ResourceID"/>
+        <xs:attribute name="matindex" type="ResourceIndex"/>
+        <xs:attribute name="thumbnail" type="UriReference"/>
+        <xs:attribute name="partnumber" type="xs:string"/>
+        <xs:attribute name="name" type="xs:string"/>
+        <!--<xs:anyAttribute namespace="##other" processContents="lax"/>-->
+    </xs:complexType>
+    <xs:complexType name="Mesh">
+        <xs:sequence>
+            <xs:element ref="vertices"/>
+            <xs:element ref="triangles"/>
+            <!--<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>-->
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Vertices">
+        <xs:sequence>
+            <xs:element ref="vertex" minOccurs="3" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Vertex">
+        <xs:attribute name="x" type="Number" use="required"/>
+        <xs:attribute name="y" type="Number" use="required"/>
+        <xs:attribute name="z" type="Number" use="required"/>
+        <!--<xs:anyAttribute namespace="##other" processContents="lax"/>-->
+    </xs:complexType>
+    <xs:complexType name="Triangles">
+        <xs:sequence>
+            <xs:element ref="triangle" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Triangle">
+        <xs:attribute name="v1" type="ResourceIndex" use="required"/>
+        <xs:attribute name="v2" type="ResourceIndex" use="required"/>
+        <xs:attribute name="v3" type="ResourceIndex" use="required"/>
+        <xs:attribute name="p1" type="ResourceIndex"/>
+        <xs:attribute name="p2" type="ResourceIndex"/>
+        <xs:attribute name="p3" type="ResourceIndex"/>
+        <xs:attribute name="pid" type="ResourceID"/>
+        <!--<xs:anyAttribute namespace="##other" processContents="lax"/>-->
+    </xs:complexType>
+    <xs:complexType name="Components">
+        <xs:sequence>
+            <xs:element ref="component" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Component">
+        <xs:attribute name="objectid" type="ResourceID" use="required"/>
+        <xs:attribute name="transform" type="Matrix3D"/>
+        <!--<xs:anyAttribute namespace="##other" processContents="lax"/>-->
+    </xs:complexType>
+    <xs:complexType name="Metadata" mixed="true">
+        <xs:sequence>
+            <xs:element ref="entry" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:QName" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="Item">
+        <xs:attribute name="objectid" type="ResourceID" use="required"/>
+        <xs:attribute name="transform" type="Matrix3D"/>
+        <xs:attribute name="itemref" type="xs:ID"/>
+        <!--<xs:anyAttribute namespace="##other" processContents="lax"/>-->
+    </xs:complexType>
+    <xs:complexType name="Material">
+        <xs:attribute name="id" type="ResourceID" use="required"/>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="colorid" type="ResourceID" use="required"/>
+        <xs:attribute name="type" type="xs:string" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="Color">
+        <xs:attribute name="id" type="ResourceID" use="required"/>
+        <xs:attribute name="value" type="ColorValue" use="required"/>
+    </xs:complexType>
+    <!-- Simple Types -->
+    <xs:simpleType name="Unit">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="micron"/>
+            <xs:enumeration value="millimeter"/>
+            <xs:enumeration value="centimeter"/>
+            <xs:enumeration value="inch"/>
+            <xs:enumeration value="foot"/>
+            <xs:enumeration value="meter"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ColorValue">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="#[0-9|A-F|a-f][0-9|A-F|a-f][0-9|A-F|a-f][0-9|A-F|a-f][0-9|A-F|a-f][0-9|A-F|a-f]([0-9|A-F|a-f][0-9|A-F|a-f])?"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="UriReference">
+        <xs:restriction base="xs:anyURI">
+            <xs:pattern value="/.*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Matrix3D">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Number">
+        <xs:restriction base="xs:double">
+            <xs:whiteSpace value="collapse"/>
+            <xs:pattern value="((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ResourceID">
+        <xs:restriction base="xs:nonNegativeInteger">
+            <xs:minInclusive value="0"/>
+            <xs:maxExclusive value="2147483648"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ResourceIndex">
+        <xs:restriction base="xs:nonNegativeInteger">
+            <xs:maxExclusive value="2147483648"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ObjectType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="model"/>
+            <xs:enumeration value="support"/>
+            <xs:enumeration value="other"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Entry">
+        <xs:restriction base="xs:string">
+            <xs:pattern value=""/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- Elements -->
+    <xs:element name="model" type="Model"/>
+    <xs:element name="resources" type="Resources"/>
+    <xs:element name="build" type="Build"/>
+    <xs:element name="basematerials" type="BaseMaterials"/>
+    <xs:element name="base" type="Base"/>
+    <xs:element name="object" type="Object"/>
+    <xs:element name="mesh" type="Mesh"/>
+    <xs:element name="vertices" type="Vertices"/>
+    <xs:element name="vertex" type="Vertex"/>
+    <xs:element name="triangles" type="Triangles"/>
+    <xs:element name="triangle" type="Triangle"/>
+    <xs:element name="components" type="Components"/>
+    <xs:element name="component" type="Component"/>
+    <xs:element name="metadata" type="Metadata"/>
+    <xs:element name="entry" type="Entry"/>
+    <xs:element name="item" type="Item"/>
+    <xs:element name="material" type="Material"/>
+    <xs:element name="color" type="Color"/>
+</xs:schema>

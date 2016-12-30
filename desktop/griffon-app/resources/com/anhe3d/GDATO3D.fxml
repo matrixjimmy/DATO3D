@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.anhe3d.GDATO3DView">
+    <top>
+        <AnchorPane>
+            <MenuBar AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+                     BorderPane.alignment="CENTER">
+                <Menu mnemonicParsing="false" text="File">
+                    <MenuItem fx:id="fileOpenActionTarget" mnemonicParsing="false" text="Open"/>
+                    <MenuItem fx:id="fileCloseActionTarget" mnemonicParsing="false" text="Close"/>
+                    <SeparatorMenuItem mnemonicParsing="false"/>
+                    <MenuItem fx:id="fileSaveActionTarget" mnemonicParsing="false" text="Save"/>
+                    <SeparatorMenuItem mnemonicParsing="false"/>
+                    <MenuItem fx:id="fileExitActionTarget" mnemonicParsing="false" text="Exit"/>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Generate...">
+                    <MenuItem fx:id="generatePillViewActionTarget" mnemonicParsing="false" text="Generate Pills"/>
+                    <MenuItem fx:id="generateEclipsePattern1ViewActionTarget" mnemonicParsing="false" text="Generate Pattern 1"/>
+                    <MenuItem fx:id="generateEclipsePattern2ViewActionTarget" mnemonicParsing="false" text="Generate Pattern 2"/>
+                    <MenuItem fx:id="generateTubePatternViewActionTarget" mnemonicParsing="false" text="Generate Tube Pattern"/>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <MenuItem mnemonicParsing="false" text="About"/>
+                </Menu>
+            </MenuBar>
+        </AnchorPane>
+    </top>
+    <right>
+        <Accordion prefWidth="400" BorderPane.alignment="CENTER">
+            <panes>
+                <TitledPane text="Serial">
+                    <AnchorPane>
+                        <GridPane hgap="4" vgap="4" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <columnConstraints>
+                                <ColumnConstraints/>
+                                <ColumnConstraints/>
+                                <ColumnConstraints/>
+                                <ColumnConstraints/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints/>
+                                <RowConstraints/>
+                                <RowConstraints/>
+                                <RowConstraints/>
+                                <RowConstraints/>
+                            </rowConstraints>
+                            <padding>
+                                <Insets bottom="10" left="10" right="10" top="10"/>
+                            </padding>
+                            <Label text="Port Selection" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                            <ChoiceBox fx:id="serialName" prefWidth="200" GridPane.columnIndex="1" GridPane.columnSpan="2"
+                                       GridPane.rowIndex="0"/>
+
+                            <!--<Label text="Connection Speed" GridPane.rowIndex="1" GridPane.columnIndex="0"/>-->
+                            <!--<ChoiceBox fx:id="serialConnSpeed" GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.columnSpan="2" prefWidth="100"/>-->
+
+                            <Label fx:id="serialConnStatus" text="Disconnected" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                            <Button fx:id="serialConnectActionTarget" text="Connect" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                            <Button fx:id="serialDisconnectActionTarget" text="Disconnect" GridPane.columnIndex="0"
+                                    GridPane.rowIndex="3"/>
+                            <Button fx:id="serialDisplayMsgActionTarget" text="Display Msg" GridPane.columnIndex="0"
+                                    GridPane.rowIndex="4"/>
+                            <!--<Button fx:id="serialCheckBusyActionTarget" text="Check Busy" GridPane.columnIndex="0" GridPane.rowIndex="5"/>-->
+                        </GridPane>
+                        <Label fx:id="serialMsg" layoutX="19.0" layoutY="154.0" prefHeight="368.0" prefWidth="397.0"/>
+                    </AnchorPane>
+                </TitledPane>
+                <TitledPane text="Printer">
+                    <GridPane hgap="4" vgap="4">
+                        <columnConstraints>
+                            <ColumnConstraints/>
+                            <ColumnConstraints/>
+                            <ColumnConstraints/>
+                            <ColumnConstraints/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints/>
+                            <RowConstraints/>
+                        </rowConstraints>
+                        <padding>
+                            <Insets bottom="5" left="5" right="5" top="5"/>
+                        </padding>
+                        <Label text="Printer Selection" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <ChoiceBox fx:id="printerName" prefWidth="200" GridPane.columnIndex="1" GridPane.columnSpan="2"
+                                   GridPane.rowIndex="0"/>
+                        <Button fx:id="autoPrintSinglePageActionTarget" text="Print" GridPane.columnIndex="0" GridPane.columnSpan="2"
+                                GridPane.rowIndex="1"/>
+                        <ToggleButton fx:id="autoPrintPagesActionTarget" mnemonicParsing="false" text="Continue Print"
+                                      GridPane.columnSpan="2" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                        <Button fx:id="testCanvasActionTarget" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+                    </GridPane>
+                </TitledPane>
+            </panes>
+        </Accordion>
+    </right>
+    <center>
+        <TabPane fx:id="tabGroup" prefHeight="600.0" prefWidth="500.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        </TabPane>
+    </center>
+</BorderPane>

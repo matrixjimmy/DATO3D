@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://schemas.microsoft.com/3dmanufacturing/material/2015/02" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:c="http://schemas.microsoft.com/3dmanufacturing/core/2015/02"
+           targetNamespace="http://schemas.microsoft.com/3dmanufacturing/material/2015/02" elementFormDefault="unqualified"
+           attributeFormDefault="unqualified" blockDefault="#all">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+    <xs:import namespace="http://schemas.microsoft.com/3dmanufacturing/core/2015/02" schemaLocation="3mf-schema-core-2015-02.xsd"/>
+    <xs:annotation>
+        <xs:documentation><![CDATA[
+            Schema notes:
+            Items within this schema follow a simple naming convention of appending a prefix indicating the type of element for references:
+            Unprefixed: Element names
+            : Complex types
+            : Simple types
+        ]]></xs:documentation>
+    </xs:annotation>
+    <!-- Complex Types -->
+    <xs:complexType name="Material">
+        <xs:attribute name="id" type="c:ResourceID" use="required"/>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="colorid" type="c:ResourceID" use="required"/>
+        <xs:attribute name="type" type="xs:string" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="Color">
+        <xs:attribute name="id" type="c:ResourceID"/>
+        <xs:attribute name="color" type="c:ColorValue" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="ColorGroup">
+        <xs:sequence>
+            <xs:element ref="color" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="c:ResourceID" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="Texture2DGroup">
+        <xs:sequence>
+            <xs:element ref="tex2coord" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="c:ResourceID" use="required"/>
+        <xs:attribute name="texid" type="c:ResourceID" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="Tex2Coord">
+        <xs:attribute name="u" type="c:Number"/>
+        <xs:attribute name="v" type="c:Number"/>
+    </xs:complexType>
+    <xs:complexType name="CompositeMaterials">
+        <xs:sequence>
+            <xs:element ref="composite" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="c:ResourceID" use="required"/>
+        <xs:attribute name="matid" type="c:ResourceID" use="required"/>
+        <xs:attribute name="matindices" type="xs:string" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="Composite">
+        <xs:attribute name="values" type="xs:string" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="MultiProperties">
+        <xs:sequence>
+            <xs:element ref="multi" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="c:ResourceID" use="required"/>
+        <xs:attribute name="pid" type="xs:string" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="Multi">
+        <xs:attribute name="pindices" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <!-- Elements -->
+    <xs:element name="material" type="Material"/>
+    <xs:element name="color" type="Color"/>
+    <xs:element name="colorgroup" type="ColorGroup"/>
+    <xs:element name="texture2dgroup" type="Texture2DGroup"/>
+    <xs:element name="tex2coord" type="Tex2Coord"/>
+    <xs:element name="compositematerials" type="CompositeMaterials"/>
+    <xs:element name="composite" type="Composite"/>
+    <xs:element name="multiproperties" type="MultiProperties"/>
+    <xs:element name="multi" type="Multi"/>
+</xs:schema>

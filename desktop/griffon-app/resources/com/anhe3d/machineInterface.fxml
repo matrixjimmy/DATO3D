@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.anhe3d.MachineInterfaceView">
+    <content>
+        <GridPane alignment="CENTER" prefWidth="500.0">
+            <columnConstraints>
+                <ColumnConstraints minWidth="170.0"/>
+                <ColumnConstraints prefWidth="80.0"/>
+                <ColumnConstraints prefWidth="80.0"/>
+                <ColumnConstraints prefWidth="80.0"/>
+                <ColumnConstraints prefWidth="80.0"/>
+                <ColumnConstraints/>
+                <ColumnConstraints/>
+                <ColumnConstraints/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+            </rowConstraints>
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10"/>
+            </padding>
+            <children>
+                <Label text="Extrude Tank" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <Button fx:id="eUpMostButtonActionTarget" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.valignment="CENTER"/>
+                <Button fx:id="eUpStepButtonActionTarget" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.valignment="CENTER"/>
+                <Button fx:id="eDownStepButtonActionTarget" GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.valignment="CENTER"/>
+                <Button fx:id="eDownMostButtonActionTarget" GridPane.columnIndex="4" GridPane.rowIndex="0" GridPane.valignment="CENTER"/>
+                <Label text="Extrude Tank Current" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1"/>
+                <TextField fx:id="eCurrentPos" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1"/>
+                <Button fx:id="eFlatButtonActionTarget" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
+
+                <Label text="Construction Tank" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <Button fx:id="zUpMostButtonActionTarget" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="CENTER"/>
+                <Button fx:id="zUpStepButtonActionTarget" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="CENTER"/>
+                <Button fx:id="zDownStepButtonActionTarget" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="CENTER"/>
+                <Button fx:id="zDownMostButtonActionTarget" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="CENTER"/>
+                <Label text="Construction Tank Current" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3"/>
+                <TextField fx:id="zCurrentPos" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3"/>
+                <Button fx:id="zFlatButtonActionTarget" GridPane.columnIndex="4" GridPane.rowIndex="3"/>
+
+                <Label text="Printer Control" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <Button fx:id="pPowerButtonActionTarget" text="POWER" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="CENTER"/>
+                <Button fx:id="pInkButtonActionTarget" text="INK" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.valignment="CENTER"/>
+                <Button fx:id="pPaperButtonActionTarget" text="PAPER" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.valignment="CENTER"/>
+                <Button fx:id="pDeleteButtonActionTarget" text="DELETE" GridPane.columnIndex="4" GridPane.rowIndex="4" GridPane.valignment="CENTER"/>
+
+                <Button fx:id="pStartPrintActionTarget" text="Start Print" GridPane.columnIndex="1" GridPane.rowIndex="5"
+                        GridPane.valignment="CENTER"/>
+                <Button fx:id="pStopPrintActionTarget" text="Stop Print" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.valignment="CENTER"/>
+                <Button fx:id="pStartPowderActionTarget" text="Start Powder" GridPane.columnIndex="2" GridPane.rowIndex="5"
+                        GridPane.valignment="CENTER"/>
+
+                <Label text="Machine Control" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+                <Button fx:id="mGoToStartButtonActionTarget" text="G08" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="CENTER"/>
+                <Button fx:id="mGoToEndButtonActionTarget" text="G09" GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.valignment="CENTER"/>
+
+                <Label text="Servo" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+                <Button fx:id="mServoUpButtonActionTarget" text="G0B" GridPane.columnIndex="1" GridPane.rowIndex="7" GridPane.valignment="CENTER"/>
+                <Button fx:id="mServoDownButtonActionTarget" text="G0C" GridPane.columnIndex="2" GridPane.rowIndex="7" GridPane.valignment="CENTER"/>
+                <Button fx:id="mServoStopButtonActionTarget" text="G0D" GridPane.columnIndex="3" GridPane.rowIndex="7" GridPane.columnSpan="2"
+                        GridPane.valignment="CENTER"/>
+
+                <Label text="Roller" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+                <Button fx:id="mRollerForwardButtonActionTarget" text="G0E" GridPane.columnIndex="1" GridPane.rowIndex="8"
+                        GridPane.valignment="CENTER"/>
+                <Button fx:id="mRollerBackwardButtonActionTarget" text="G0F" GridPane.columnIndex="2" GridPane.rowIndex="8"
+                        GridPane.valignment="CENTER"/>
+                <Button fx:id="mRollerStopButtonActionTarget" text="G0G" GridPane.columnIndex="3" GridPane.rowIndex="8" GridPane.columnSpan="2"
+                        GridPane.valignment="CENTER"/>
+            </children>
+        </GridPane>
+    </content>
+</ScrollPane>
