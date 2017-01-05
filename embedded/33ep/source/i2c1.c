@@ -104,7 +104,6 @@ uint8_t Read33FJResult(void) {
     I2C1CONbits.ACKDT = 1;
 
     I2C1ModuleSendStop();
-    //printf("%d\n", result);
     return result;
 }
 

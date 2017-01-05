@@ -17,13 +17,8 @@ extern "C" {
 #include "i2c.h"
 #include "oc.h"
 #include "uart2.h"
-#define BSP_TICKS_PER_SEC       2000U
-#define BSP_S(time_)            (BSP_TICKS_PER_SEC * time_)
-#define BSP_MS(time_)           (BSP_S(time_) / 1000U)
 
     void BSP_display(char const *msg, ...);
-    void BSP_exit(void);
-    void BSP_onKeyboardInput(uint8_t key);
     void BSP_GCodeParser(char * command);
 
 #ifdef	__cplusplus
@@ -31,4 +26,3 @@ extern "C" {
 #endif
 
 #endif	/* BSP_H */
-

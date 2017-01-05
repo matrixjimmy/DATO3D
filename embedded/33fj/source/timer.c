@@ -1,32 +1,5 @@
 #include "constants.h"
 #include "DTG.h"
-//***********************區域變數********************************/
-//static uint16_t Timer50us=0;
-//static uint16_t Timer50usFLAG = 0;
-//static uint16_t Timer1Ms = 0;
-//static uint16_t Timer1MsFLAG = 0;
-//static uint16_t Timer5Ms=0;
-//static uint16_t Timer5MsFLAG=0;
-//static uint16_t Timer50Ms=0;
-//static uint16_t Timer50MsFLAG=0;
-//static uint16_t Timer100Ms=0;
-//static uint16_t Timer100MsFLAG=0;
-//static uint16_t TimerCounter=0;
-//static uint16_t TimerSecond=0;
-//static uint16_t TimerMinute=0;
-//static uint16_t TimerHour=0;
-//static uint16_t TimerSecondFLAG=0;
-//static uint16_t T3counter=0;
-//static uint16_t T5_Counter=0;
-//static uint16_t DelayMs_SetNumber = 0;
-//uint16_t Delay5us_SetNumber=0;
-
-/********************* Timer1中斷程式 *******************************************/
-/* Function:
- * 目前設定為5 us
- * @see system.c ConfigureTimer1 註解計算
- */
-
 /*********************每50us(0.05ms) 進一次Function******************************/
 //  1. 設定Timer FLAG
 //  2. 控制步進馬達

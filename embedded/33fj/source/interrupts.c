@@ -64,5 +64,4 @@
 void _ISR_PSV _QEI1Interrupt(void)
 {
     IFS3bits.QEI1IF = 0;
-
 }

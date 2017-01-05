@@ -81,32 +81,32 @@ void PIN_MANAGER_Initialize(void)
     /****************************************************************************
      * Interrupt On Change for group CNENA - any
      ***************************************************************************/
-	CNENAbits.CNIEA0 = 1; // Pin : RA0
-	CNENAbits.CNIEA1 = 1; // Pin : RA1
-	CNENAbits.CNIEA11 = 1; // Pin : RA11
-	CNENAbits.CNIEA12 = 1; // Pin : RA12
-	CNENAbits.CNIEA7 = 1; // Pin : RA7
+  	CNENAbits.CNIEA0 = 1; // Pin : RA0
+  	CNENAbits.CNIEA1 = 1; // Pin : RA1
+  	CNENAbits.CNIEA11 = 1; // Pin : RA11
+  	CNENAbits.CNIEA12 = 1; // Pin : RA12
+  	CNENAbits.CNIEA7 = 1; // Pin : RA7
 
     /****************************************************************************
      * Interrupt On Change for group CNENB - any
      ***************************************************************************/
-	CNENBbits.CNIEB0 = 1; // Pin : RB0
-	CNENBbits.CNIEB1 = 1; // Pin : RB1
-	CNENBbits.CNIEB14 = 1; // Pin : RB14
-	CNENBbits.CNIEB15 = 1; // Pin : RB15
+  	CNENBbits.CNIEB0 = 1; // Pin : RB0
+  	CNENBbits.CNIEB1 = 1; // Pin : RB1
+  	CNENBbits.CNIEB14 = 1; // Pin : RB14
+  	CNENBbits.CNIEB15 = 1; // Pin : RB15
 
     /****************************************************************************
      * Interrupt On Change for group CNENE - any
      ***************************************************************************/
-	CNENEbits.CNIEE15 = 1; // Pin : RE15
+	  CNENEbits.CNIEE15 = 1; // Pin : RE15
 
     /****************************************************************************
      * Interrupt On Change for group CNENG - any
      ***************************************************************************/
-	CNENGbits.CNIEG6 = 1; // Pin : RG6
-	CNENGbits.CNIEG7 = 1; // Pin : RG7
-	CNENGbits.CNIEG8 = 1; // Pin : RG8
-	CNENGbits.CNIEG9 = 1; // Pin : RG9
+  	CNENGbits.CNIEG6 = 1; // Pin : RG6
+  	CNENGbits.CNIEG7 = 1; // Pin : RG7
+  	CNENGbits.CNIEG8 = 1; // Pin : RG8
+  	CNENGbits.CNIEG9 = 1; // Pin : RG9
 
     IEC1bits.CNIE = 1; // Enable CNI interrupt
 }

@@ -3,122 +3,6 @@
 #include "gcode.h"
 #include "protocol-i2c.h"
 
-void BSP_onKeyboardInput(uint8_t key) {
-//    static uint16_t reqCtr = 0; /* count the requests */
-//    static size_t characterPosition = 0;
-//    static uint8_t instruction[16] = {' '};
-#if 0
-//    switch(key) {
-//        case '\n': {
-//            I2CRequestEvt* e = Q_NEW(I2CRequestEvt, I2CTServer_NEW_REQUEST_SIG);
-//            sprintf((char*)e->displayBuffer[0], "%s", instruction);
-//            e->ref_num = (++reqCtr);
-//            QACTIVE_POST((QActive*)&l_i2c2Tserver, (QEvt*)e,(void*)0);
-//
-//            InstructionEvt* instructionEvt = Q_NEW(InstructionEvt, GCode_NEW_REQUEST_SIG);
-//            sprintf((char*)instructionEvt->instruction, "%s", instruction);
-//            QACTIVE_POST((QActive*)&l_gcodeParser, (QEvt*)instructionEvt,(void*)0);
-//
-//            characterPosition = 0;
-//            memset(instruction, ' ', 16);
-//            break;
-//        }
-//        case 'z': {
-//            StepperRequestEvt *e = Q_NEW(StepperRequestEvt, STEPPER_RUN_SIG);
-//            e->ref_num = (++reqCtr);
-//            e->requestStep = 1000;
-//            QACTIVE_POST((QActive *)&l_stepperZ, (QEvt *)e, (void *)0);
-//            break;
-//        }
-//        case 'x': {
-//            StepperRequestEvt *e = Q_NEW(StepperRequestEvt, STEPPER_RUN_SIG);
-//            e->ref_num = (++reqCtr);
-//            e->requestStep = 1000;
-//            QACTIVE_POST((QActive *)&l_stepperX, (QEvt *)e, (void *)0);
-//            break;
-//        }
-//        case 'e': {
-//            StepperRequestEvt *e = Q_NEW(StepperRequestEvt, STEPPER_RUN_SIG);
-//            e->ref_num = (++reqCtr);
-//            e->requestStep = 1000;
-//            QACTIVE_POST((QActive *)&l_stepperE, (QEvt *)e, (void *)0);
-//            break;
-//        }
-//        default:
-//            instruction[characterPosition++] = key;
-//            break;
-//    }
-#else
-//    switch (key) {
-//        case '2': {
-//            Read33FJResult();
-//            break;
-//        }
-//        case ' ': {
-//            I2CRequestEvt *e = Q_NEW(I2CRequestEvt, I2CTServer_NEW_REQUEST_SIG);
-//            switch(reqCtr % 4) {
-//                case 0:
-//                    Write33FJInstruction(PRESS_PWR);
-//                    sprintf((char *)e->displayBuffer[0], "PRESS_PWR   ");
-//                    break;
-//                case 1:
-//                    Write33FJInstruction(PRESS_INK);
-//                    sprintf((char *)e->displayBuffer[0], "PRESS_INK   ");
-//                    break;
-//                case 2:
-//                    Write33FJInstruction(PRESS_PAPER);
-//                    sprintf((char *)e->displayBuffer[0], "PRESS_PAPER ");
-//                    break;
-//                case 3:
-//                    Write33FJInstruction(PRESS_DELETE);
-//                    sprintf((char *)e->displayBuffer[0], "PRESS_DELETE");
-//            }
-//            e->ref_num = (++reqCtr); /* set the reference number */
-//            if(reqCtr > MAX_STATE) {
-//                reqCtr = IDLE;
-//            }
-//            Write33FJInstruction(reqCtr);
-//            /* post directly to TServer active object */
-//            QACTIVE_POST((QActive *)&l_i2c2Tserver, (QEvt *)e, (void *)0);
-//            break;
-//        }
-//        case 'n': {  /* 'n': new request? */
-//            I2CRequestEvt *e = Q_NEW(I2CRequestEvt, I2CTServer_NEW_REQUEST_SIG);
-//            e->ref_num = (++reqCtr); /* set the reference number */
-//            /* post directly to TServer active object */
-//            sprintf((char *)e->displayBuffer[0], "%d", e->ref_num);
-//            QACTIVE_POST((QActive *)&l_i2c2Tserver, (QEvt *)e, (void *)0);
-//            break;
-//        }
-//        case 'z': {
-//            StepperRequestEvt *e = Q_NEW(StepperRequestEvt, STEPPER_RUN_SIG);
-//            e->ref_num = (++reqCtr);
-//            e->requestStep = 1000;
-//            QACTIVE_POST((QActive *)&l_stepperZ, (QEvt *)e, (void *)0);
-//            break;
-//        }
-//        case 'e': {
-//            StepperRequestEvt *e = Q_NEW(StepperRequestEvt, STEPPER_RUN_SIG);
-//            e->ref_num = (++reqCtr);
-//            e->requestStep = 1000;
-//            QACTIVE_POST((QActive *)&l_stepperE, (QEvt *)e, (void *)0);
-//            break;
-//        }
-//        case 'x': {
-//            StepperRequestEvt *e = Q_NEW(StepperRequestEvt, STEPPER_RUN_SIG);
-//            e->ref_num = (++reqCtr);
-//            e->requestStep = 1000;
-//            QACTIVE_POST((QActive *)&l_stepperX, (QEvt *)e, (void *)0);
-//            break;
-//        }
-//        case '\33': { /* ESC pressed? */
-//            static QEvt const terminateEvt = { TERMINATE_SIG, 0U, 0U };
-//            QACTIVE_POST((QMActive *)&l_i2c2Tserver, &terminateEvt, (void *)0);
-//            break;
-//        }
-//    }
-#endif
-}
 /**
  * with line separator
  * @param msg
@@ -132,10 +16,6 @@ void BSP_display(const char* msg, ...) {
     va_end(argptr);
     printf("\n");
 #endif
-}
-
-void BSP_exit(void) {
-    BSP_display("Exit");
 }
 
 extern bool zAtTop;
