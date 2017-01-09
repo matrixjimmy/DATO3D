@@ -23,15 +23,15 @@ extern "C" {
 #define RP19_SetDigitalInput()  do { TRISCbits.TRISC3 = INPUT; } while(0)
 #define RP19_SetDigitalOutput() do { TRISCbits.TRISC3 = OUTPUT; } while(0)
 
-#define RP20                    LATCbits.LATC4
-#define PORT_RP20               PORTCbits.RC4
-#define DIR_RP20                TRISCbits.TRISC4
-#define RP20_SetHigh()          do { LATCbits.LATC4 = HI; } while(0)
-#define RP20_SetLow()           do { LATCbits.LATC4 = LOW;} while(0)
-#define RP20_Toggle()           do { LATCbits.LATC4 = ~LATCbits.LATC4; } while(0)
-#define RP20_GetValue()         PORTCbits.RC4
-#define RP20_SetDigitalInput()  do { TRISCbits.TRISC4 = INPUT; } while(0)
-#define RP20_SetDigitalOutput() do { TRISCbits.TRISC4 = OUTPUT; } while(0)
+//#define RP20                    LATCbits.LATC4
+//#define PORT_RP20               PORTCbits.RC4
+//#define DIR_RP20                TRISCbits.TRISC4
+//#define RP20_SetHigh()          do { LATCbits.LATC4 = HI; } while(0)
+//#define RP20_SetLow()           do { LATCbits.LATC4 = LOW;} while(0)
+//#define RP20_Toggle()           do { LATCbits.LATC4 = ~LATCbits.LATC4; } while(0)
+//#define RP20_GetValue()         PORTCbits.RC4
+//#define RP20_SetDigitalInput()  do { TRISCbits.TRISC4 = INPUT; } while(0)
+//#define RP20_SetDigitalOutput() do { TRISCbits.TRISC4 = OUTPUT; } while(0)
 
 /** 印表機連接 */
 /* [OUTPUT] SW_PWR */
@@ -146,52 +146,62 @@ extern "C" {
 #define STEP_DIRECTION_SetDigitalInput()  do { TRISBbits.TRISB15 = INPUT; } while(0)
 #define STEP_DIRECTION_SetDigitalOutput() do { TRISBbits.TRISB15 = OUTPUT; } while(0)
 
-/* [OUTPUT] STEP_EN */
-#define	STEP_EN         LATCbits.LATC5
-#define PORT_STEP_EN    PORTCbits.RC5
-#define	DIR_STEP_EN     TRISCbits.TRISC5
-#define STEP_EN_SetHigh()           do { LATCbits.LATC5 = HI; } while(0)
-#define STEP_EN_SetLow()            do { LATCbits.LATC5 = LOW;} while(0)
-#define STEP_EN_Toggle()            do { LATCbits.LATC5 = ~LATBbits.LATC15; } while(0)
-#define STEP_EN_GetValue()         PORTCbits.RC5
-#define STEP_EN_SetDigitalInput()  do { TRISCbits.TRISC5 = INPUT; } while(0)
-#define STEP_EN_SetDigitalOutput() do { TRISCbits.TRISC5 = OUTPUT; } while(0)
-
 /** 滾粉馬達 */
-/* [OUTPUT] L298PEN */
-#define L298PEN               LATCbits.LATC0
-#define PORT_L298PEN          PORTCbits.RC0
-#define DIR_L298PEN           TRISCbits.TRISC0
-#define L298PEN_SetHigh()           do { LATCbits.LATC0 = HI; } while(0)
-#define L298PEN_SetLow()            do { LATCbits.LATC0 = LOW;} while(0)
-#define L298PEN_Toggle()            do { LATCbits.LATC0 = ~LATCbits.LATC0; } while(0)
-#define L298PEN_GetValue()          PORTCbits.RC0
-#define L298PEN_SetDigitalInput()   do { TRISCbits.TRISC0 = INPUT; } while(0)
-#define L298PEN_SetDigitalOutput()  do { TRISCbits.TRISC0 = OUTPUT; } while(0)
-/* [OUTPUT] L298PIN1 */
-#define L298PIN1               LATCbits.LATC1
-#define PORT_L298PIN1          PORTCbits.RC1
-#define DIR_L298PIN1           TRISCbits.TRISC1
-#define L298PIN1_SetHigh()           do { LATCbits.LATC1 = HI; } while(0)
-#define L298PIN1_SetLow()            do { LATCbits.LATC1 = LOW;} while(0)
-#define L298PIN1_Toggle()            do { LATCbits.LATC1 = ~LATCbits.LATC1; } while(0)
-#define L298PIN1_GetValue()          PORTCbits.RC1
-#define L298PIN1_SetDigitalInput()   do { TRISCbits.TRISC1 = INPUT; } while(0)
-#define L298PIN1_SetDigitalOutput()  do { TRISCbits.TRISC1 = OUTPUT; } while(0)
-/* [OUTPUT] L298PIN2 */
-#define L298PIN2             LATCbits.LATC2
-#define PORT_L298PIN2        PORTCbits.RC2
-#define DIR_L298PIN2         TRISCbits.TRISC2
-#define L298PIN2_SetHigh()           do { LATCbits.LATC2 = HI; } while(0)
-#define L298PIN2_SetLow()            do { LATCbits.LATC2 = LOW;} while(0)
-#define L298PIN2_Toggle()            do { LATCbits.LATC2 = ~LATCbits.LATC2; } while(0)
-#define L298PIN2_GetValue()          PORTCbits.RC2
-#define L298PIN2_SetDigitalInput()   do { TRISCbits.TRISC2 = INPUT; } while(0)
-#define L298PIN2_SetDigitalOutput()  do { TRISCbits.TRISC2 = OUTPUT; } while(0)
+/* [OUTPUT] ROLLER_DIRECTION */
+#define	ROLLER_DIRECTION         LATCbits.LATC5
+#define PORT_ROLLER_DIRECTION    PORTCbits.RC5
+#define	DIR_ROLLER_DIRECTION     TRISCbits.TRISC5
+#define ROLLER_DIRECTION_SetHigh()           do { LATCbits.LATC5 = HI; } while(0)
+#define ROLLER_DIRECTION_SetLow()            do { LATCbits.LATC5 = LOW;} while(0)
+#define ROLLER_DIRECTION_Toggle()            do { LATCbits.LATC5 = ~LATBbits.LATC15; } while(0)
+#define ROLLER_DIRECTION_GetValue()         PORTCbits.RC5
+#define ROLLER_DIRECTION_SetDigitalInput()  do { TRISCbits.TRISC5 = INPUT; } while(0)
+#define ROLLER_DIRECTION_SetDigitalOutput() do { TRISCbits.TRISC5 = OUTPUT; } while(0)
+
+/* [OUTPUT] ROLLER_PULSE */
+#define	ROLLER_PULSE         LATCbits.LATC4
+#define PORT_ROLLER_PULSE    PORTCbits.RC4
+#define	DIR_ROLLER_PULSE     TRISCbits.TRISC4
+#define ROLLER_PULSE_SetHigh()           do { LATCbits.LATC4 = HI; } while(0)
+#define ROLLER_PULSE_SetLow()            do { LATCbits.LATC4 = LOW;} while(0)
+#define ROLLER_PULSE_Toggle()            do { LATCbits.LATC4 = ~LATBbits.LATC15; } while(0)
+#define ROLLER_PULSE_GetValue()         PORTCbits.RC4
+#define ROLLER_PULSE_SetDigitalInput()  do { TRISCbits.TRISC4 = INPUT; } while(0)
+#define ROLLER_PULSE_SetDigitalOutput() do { TRISCbits.TRISC4 = OUTPUT; } while(0)
 /* 滾粉馬達Macro */
-#define RollerForward()      do { LATCbits.LATC1 = HI; LATCbits.LATC2 = LOW; } while(0)
-#define RollerBackward()     do { LATCbits.LATC1 = LOW; LATCbits.LATC2 = HI; } while(0)
-#define RollerStop()         do { LATCbits.LATC1 = HI; LATCbits.LATC2 = HI; } while(0)
+#define RollerForward()      do { LATCbits.LATC5 = LOW; } while(0)
+#define RollerBackward()     do { LATCbits.LATC5 = HI; } while(0)
+//#define RollerStop()         do { LATCbits.LATC1 = HI; LATCbits.LATC2 = HI; } while(0)
+///* [OUTPUT] L298PEN */
+//#define L298PEN               LATCbits.LATC0
+//#define PORT_L298PEN          PORTCbits.RC0
+//#define DIR_L298PEN           TRISCbits.TRISC0
+//#define L298PEN_SetHigh()           do { LATCbits.LATC0 = HI; } while(0)
+//#define L298PEN_SetLow()            do { LATCbits.LATC0 = LOW;} while(0)
+//#define L298PEN_Toggle()            do { LATCbits.LATC0 = ~LATCbits.LATC0; } while(0)
+//#define L298PEN_GetValue()          PORTCbits.RC0
+//#define L298PEN_SetDigitalInput()   do { TRISCbits.TRISC0 = INPUT; } while(0)
+//#define L298PEN_SetDigitalOutput()  do { TRISCbits.TRISC0 = OUTPUT; } while(0)
+///* [OUTPUT] L298PIN1 */
+//#define L298PIN1               LATCbits.LATC1
+//#define PORT_L298PIN1          PORTCbits.RC1
+//#define DIR_L298PIN1           TRISCbits.TRISC1
+//#define L298PIN1_SetHigh()           do { LATCbits.LATC1 = HI; } while(0)
+//#define L298PIN1_SetLow()            do { LATCbits.LATC1 = LOW;} while(0)
+//#define L298PIN1_Toggle()            do { LATCbits.LATC1 = ~LATCbits.LATC1; } while(0)
+//#define L298PIN1_GetValue()          PORTCbits.RC1
+//#define L298PIN1_SetDigitalInput()   do { TRISCbits.TRISC1 = INPUT; } while(0)
+//#define L298PIN1_SetDigitalOutput()  do { TRISCbits.TRISC1 = OUTPUT; } while(0)
+///* [OUTPUT] L298PIN2 */
+//#define L298PIN2             LATCbits.LATC2
+//#define PORT_L298PIN2        PORTCbits.RC2
+//#define DIR_L298PIN2         TRISCbits.TRISC2
+//#define L298PIN2_SetHigh()           do { LATCbits.LATC2 = HI; } while(0)
+//#define L298PIN2_SetLow()            do { LATCbits.LATC2 = LOW;} while(0)
+//#define L298PIN2_Toggle()            do { LATCbits.LATC2 = ~LATCbits.LATC2; } while(0)
+//#define L298PIN2_GetValue()          PORTCbits.RC2
+//#define L298PIN2_SetDigitalInput()   do { TRISCbits.TRISC2 = INPUT; } while(0)
+//#define L298PIN2_SetDigitalOutput()  do { TRISCbits.TRISC2 = OUTPUT; } while(0)
 
 /** 伺服馬達/滾粉機構升降 */
 /* [OUTPUT] ServoLeft */

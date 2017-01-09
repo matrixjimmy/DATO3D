@@ -43,7 +43,8 @@ public enum CommProtocol {
     E_GO_FLAT("G24"),
 
     GET_33EP_STATUS("M00"),
-    GET_33FJ_STATUS("M01"),;
+    GET_33FJ_STATUS("M01"),
+    SET_ROLLER_SPEED("M02"),;
 
     private String code;
 
@@ -52,6 +53,11 @@ public enum CommProtocol {
     }
 
     public String code() {
+        return code;
+    }
+
+    @Override
+    public String toString() {
         return code;
     }
 }

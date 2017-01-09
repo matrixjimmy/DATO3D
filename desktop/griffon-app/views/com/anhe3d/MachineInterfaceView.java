@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import lombok.Getter;
 import org.codehaus.griffon.runtime.javafx.artifact.AbstractJavaFXGriffonView;
 
 import javax.annotation.Nonnull;
@@ -42,10 +43,14 @@ public class MachineInterfaceView extends AbstractJavaFXGriffonView {
     private Button pPowerButtonActionTarget, pInkButtonActionTarget, pPaperButtonActionTarget, pDeleteButtonActionTarget, pStartPrintActionTarget, pStopPrintActionTarget, pStartPowderActionTarget;
 
     @FXML
-    private Button mGoToStartButtonActionTarget, mGoToEndButtonActionTarget, mServoUpButtonActionTarget, mServoDownButtonActionTarget, mServoStopButtonActionTarget, mRollerForwardButtonActionTarget, mRollerBackwardButtonActionTarget, mRollerStopButtonActionTarget;
+    private Button mGoToStartButtonActionTarget, mGoToEndButtonActionTarget, mServoUpButtonActionTarget, mServoDownButtonActionTarget, mServoStopButtonActionTarget, mRollerForwardButtonActionTarget, mRollerBackwardButtonActionTarget, mRollerStopButtonActionTarget, mRollerSendSettingButtonActionTarget;
 
     @FXML
     private TextField eCurrentPos, zCurrentPos;
+
+    @FXML
+    @Getter
+    private TextField rCurrentSpeed;
 
     @Override
     public void initUI() {
@@ -86,6 +91,7 @@ public class MachineInterfaceView extends AbstractJavaFXGriffonView {
         mRollerForwardButtonActionTarget.setText(getApplication().getMessageSource().getMessage("MachineInterface.action.RollerForwardButton.text"));
         mRollerBackwardButtonActionTarget.setText(getApplication().getMessageSource().getMessage("MachineInterface.action.RollerBackwardButton.text"));
         mRollerStopButtonActionTarget.setText(getApplication().getMessageSource().getMessage("MachineInterface.action.RollerStopButton.text"));
+        mRollerSendSettingButtonActionTarget.setText("設定滾粉速度");
 
         // Bind view attribute with model attribute
         model.extrudeCurrentPositionProperty().bindBidirectional(eCurrentPos.textProperty());

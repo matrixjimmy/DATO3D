@@ -46,7 +46,8 @@ extern "C" {
             FN(G24) \
             \
             FN(M00) \
-            FN(M01)
+            FN(M01) \
+            FN(M02)
 
 #define GENERATE_ENUM(ENUM) ENUM,
 #define GENERATE_STRING(STRING) #STRING,

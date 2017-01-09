@@ -52,9 +52,11 @@ void PIN_MANAGER_Initialize(void) {
     STEP_DIRECTION_SetHigh();
 
     /** 滾粉馬達 */
-    L298PEN_SetDigitalOutput();
-    L298PIN1_SetDigitalOutput();
-    L298PIN2_SetDigitalOutput();
+//    L298PEN_SetDigitalOutput();
+//    L298PIN1_SetDigitalOutput();
+//    L298PIN2_SetDigitalOutput();
+    ROLLER_DIRECTION_SetDigitalOutput();
+    ROLLER_PULSE_SetDigitalOutput();
 
     SW_PWR_SetDigitalOutput();
     SW_PWR_SetHigh();
@@ -71,9 +73,9 @@ void PIN_MANAGER_Initialize(void) {
 
     /** 設定TRIG腳(OUTPUT) */
     RP19_SetDigitalOutput();
-    RP20_SetDigitalOutput();
+    //RP20_SetDigitalOutput();
     RP19_SetLow();
-    RP20_SetLow();
+    //RP20_SetLow();
 /**************** Peripheral Pin Select(PPS) ********************************/
 //   Unlock Registers
     __builtin_write_OSCCONL(OSCCON & 0xbf);
@@ -100,7 +102,9 @@ void PIN_MANAGER_Initialize(void) {
 
     { // 滾粉相關輸出
         /* 設定(Peripheral Pin Select)(Output) RP16 = L298N ENA = OC1 */
-        RPOR8bits.RP16R = 0b10010;
+        //RPOR8bits.RP16R = 0b10010;
+        /* 設定(Peripheral Pin Select)(Output) RP20 = Roller Pulse = OC1 */
+        RPOR10bits.RP20R = 0b10010;
 
         /* 設定(Peripheral Pin Select)(Output) RP23 = Stepper Pulse(B14) = OC2 */
         //RPOR11bits.RP23R = 0b10011;

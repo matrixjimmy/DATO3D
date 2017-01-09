@@ -78,6 +78,15 @@
                         GridPane.valignment="CENTER"/>
                 <Button fx:id="mRollerStopButtonActionTarget" text="G0G" GridPane.columnIndex="3" GridPane.rowIndex="8" GridPane.columnSpan="2"
                         GridPane.valignment="CENTER"/>
+
+                <Label text="RollerSetting" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
+                <!--<Button fx:id="mRollerForwardButtonActionTarget" text="G0E" GridPane.columnIndex="1" GridPane.rowIndex="9"-->
+                        <!--GridPane.valignment="CENTER"/>-->
+                <!--<Button fx:id="mRollerBackwardButtonActionTarget" text="G0F" GridPane.columnIndex="2" GridPane.rowIndex="9"-->
+                        <!--GridPane.valignment="CENTER"/>-->
+                <TextField fx:id="rCurrentSpeed" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="9"/>
+                <Button fx:id="mRollerSendSettingButtonActionTarget" text="M02" GridPane.columnIndex="3" GridPane.rowIndex="9" GridPane.columnSpan="2"
+                        GridPane.valignment="CENTER"/>
             </children>
         </GridPane>
     </content>

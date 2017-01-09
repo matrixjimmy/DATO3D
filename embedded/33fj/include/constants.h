@@ -19,7 +19,6 @@
 #include <string.h>
 #include <dsp.h>
 #include "system.h"
-#include "user.h"
 #include "pin_manager.h"
 #include "stepmotor.h"
 #include "QEI.h"

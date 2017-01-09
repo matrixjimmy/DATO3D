@@ -24,6 +24,7 @@ extern "C" {
     }
 
     void Write33FJInstruction(uint8_t instruction);
+    void Write33FJInstructionWithParam(uint8_t instruction, uint16_t param);
     uint8_t Read33FJResult(void);
 
     void INITIALIZE_I2C2Module(void);

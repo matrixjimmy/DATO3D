@@ -193,6 +193,12 @@ void BSP_GCodeParser(char * command) {
         Write33FJInstruction(READ_STAT);
         printf("%3u", Read33FJResult());
         return;
+    } else if(COMPARE_WITH_CODE(cmd, M02)) {
+        cmd = strtok(NULL, " ");
+        uint16_t speed = atoll(cmd);
+        BSP_display("GCODE:Set Roller Speed");
+        Write33FJInstructionWithParam(SET_ROLLER_SPEED, speed);
+        return;
     } else {
         BSP_display("GCODE: cannot parse");
     }

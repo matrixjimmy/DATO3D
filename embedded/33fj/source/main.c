@@ -17,6 +17,8 @@ uint_fast16_t QEI1Diff = 0;
 uint_fast32_t QEI2_Total = 0;
 uint_fast16_t QEI2Diff = 0;
 
+static uint16_t rollerSpeed = 0;
+
 /********************* main program ***************************************************/
 int main(void) {
     SystemSetup();
@@ -256,6 +258,10 @@ int main(void) {
                 rollerStop();
                 instructionState = IDLE;
                 break;
+            case SET_ROLLER_SPEED:
+                BSP_display("Param:%u", rollerSpeed);
+                instructionState = IDLE;
+                break;
 
             case SUCCESS:
                 break;
@@ -341,13 +347,12 @@ void servoStop(void) {
 void moveRollerForward(void) {
     RollerForward();
     _T2IE = 0;
-    _OC2IE = 0;;
+    _OC1IE = 0;
     T2CON = 0;
     T2CONbits.TCKPS = 0b01; // prescale 1:8
-    PR2 = 12500;  // Period = 0.04ms
-    OC2R = PR2 * 0.99;
-    //OC1CONbits.OCM = 0b011; // Toggle Mode
-    OC1CONbits.OCM = 0b110; // PWM w/o Fault Mode
+    PR2 = rollerSpeed;
+    OC1R = 0;
+    OC1CONbits.OCM = 0b011; // Toggle Mode
     OC1CONbits.OCTSEL = 0;  // Timer 2 is selected
     T2CONbits.TON = 1;
 }
@@ -359,16 +364,16 @@ void moveRollerBackward(void) {
     T2CON = 0;
     TMR2 = 0;
     T2CONbits.TCKPS = 0b01; // prescale 1:8
-    PR2 = 12500;
-    OC1RS = PR2 * 0.99;
+    PR2 = rollerSpeed;
+    OC1R = 0;
+    OC1CONbits.OCM = 0b011; // Toggle Mode
     OC1CONbits.OCTSEL = 0;  // Timer 2 is selected
-    OC1CONbits.OCM = 0b110; // PWM w/o Fault Mode
     T2CONbits.TON = 1;
 }
 
 void rollerStop(void) {
-    RollerStop();
-    L298PEN_SetLow();
+//    RollerStop();
+//    L298PEN_SetLow();
     T2CON = 0;
     OC1CON = 0;
 }
@@ -377,19 +382,43 @@ void _ISR_PSV _SI2C1Interrupt(void) {
     static uint8_t dummyAddrToRead = 0;
     static uint8_t instruction = 0;
     static uint8_t returnData = 0;
+    static bool flag = false, hlFlag = true, completeFlag = false; // hlFlag = true : High Byte, false : Low Byte
     _SI2C1IF = 0;
 
     if (I2C1STATbits.D_A == 0 && I2C1STATbits.R_W == 0) { // [W] address
         dummyAddrToRead = I2C1RCV;
     } else if (I2C1STATbits.D_A == 1 && I2C1STATbits.R_W == 0) { // [W] data
-        instruction = I2C1RCV;
+        if(flag) {
+            uint8_t temp = I2C1RCV;
+            if(hlFlag) {
+                BSP_display("High: %u", temp);
+                rollerSpeed = (uint16_t) temp << 8;
+                hlFlag = false;
+                instruction = IDLE;
+            } else {
+                BSP_display("Low: %u", temp);
+                rollerSpeed += temp;
+                hlFlag = true;
+                flag = false;
+                completeFlag = true;
+                instruction = IDLE;
+            }
+        } else {
+            instruction = I2C1RCV;
+        }
         Nop();
         Nop();
         Nop();
         if(READ_STAT == instruction) {
             prevInstructionState = instructionState;
+        } else if(SET_ROLLER_SPEED == instruction) {
+            flag = true;
+        } else if(completeFlag) {
+            completeFlag = false;
+            instructionState = SET_ROLLER_SPEED;
+        } else {
+            instructionState = instruction;
         }
-        instructionState = instruction;
         BSP_display("I2C:[W'%u']'%u'", dummyAddrToRead, instruction);
         I2C1CONbits.SCLREL = 1;
     } else if (I2C1STATbits.D_A == 1 && I2C1STATbits.R_W == 1) { // [R]

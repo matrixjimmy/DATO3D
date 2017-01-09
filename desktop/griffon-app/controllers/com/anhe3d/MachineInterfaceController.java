@@ -5,6 +5,7 @@ import griffon.inject.MVCMember;
 import griffon.metadata.ArtifactProviderFor;
 import javafx.scene.control.TextInputDialog;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.codehaus.griffon.runtime.core.artifact.AbstractGriffonController;
 
 import javax.annotation.Nonnull;
@@ -222,4 +223,12 @@ public class MachineInterfaceController extends AbstractGriffonController {
         serialService.write(CommProtocol.ROLLER_STOP);
     }
 
+    public void mRollerSendSettingButton() {
+        int speed = 100;
+        if (StringUtils.isNotBlank(view.getRCurrentSpeed().getText()) &&
+                StringUtils.isNumeric(view.getRCurrentSpeed().getText())) {
+            speed = Integer.parseInt(view.getRCurrentSpeed().getText());
+        }
+        serialService.write(CommProtocol.SET_ROLLER_SPEED + " " + String.valueOf(speed));
+    }
 }

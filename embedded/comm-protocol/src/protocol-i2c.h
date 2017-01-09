@@ -41,6 +41,7 @@ extern "C" {
         ROLLER_FORWARD   = 0x1E,
         ROLLER_STOP      = 0x1F,
         ROLLER_BACKWARD  = 0x18,
+        SET_ROLLER_SPEED = 0x10,
 
         PRESS_PWR        = 0x20,
         PRESS_INK        = 0x21,

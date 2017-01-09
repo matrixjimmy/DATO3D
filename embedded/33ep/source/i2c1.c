@@ -20,10 +20,10 @@ void I2C1ModuleWriteOP(uint8_t deviceAddr) {
     I2C1CONbits.SEN = 1;
     while(I2C1CONbits.SEN);
     INTERRUPT_I2C1_FLAG_CLR();
-    do {
+//    do {
         I2C1TRN = I2C_OP_WRITE(deviceAddr);
         while(I2C1STATbits.TRSTAT); // transmit is in progress (8-bits + ACK)
-    } while(I2C1STATbits.ACKSTAT);  // slave is NACK
+//    } while(I2C1STATbits.ACKSTAT);  // slave is NACK
     INTERRUPT_I2C1_FLAG_CLR();
 }
 
@@ -90,6 +90,22 @@ void Write33FJInstruction(uint8_t instruction) {
     I2C1ModuleIdle();
     I2C1ModuleWriteOP(DASINK_33FJ_HW_ADDRESS);
     I2C1ModuleWrite(instruction);
+    I2C1ModuleSendStop();
+}
+
+void Write33FJInstructionWithParam(uint8_t instruction, uint16_t param) {
+    uint8_t paramH, paramL;
+    paramH = (uint8_t) (param >> 8) & 0xFF;
+    paramL = (uint8_t) param & 0xFF;
+    BSP_display("High: %u, Low: %u", paramH, paramL);
+    I2C1ModuleIdle();
+    I2C1ModuleWriteOP(DASINK_33FJ_HW_ADDRESS);
+    I2C1ModuleWrite(instruction);
+    __delay_ms(10);
+    I2C1ModuleWrite(paramH);
+    __delay_ms(10);
+    I2C1ModuleWrite(paramL);
+    __delay_ms(10);
     I2C1ModuleSendStop();
 }
 
